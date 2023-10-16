@@ -1,7 +1,12 @@
 CHANGELOG
 =========
 
-6.4
+6.5
+---
+
+* Add basic support for `RecursiveDirectoryIterator::CURRENT_AS_PATHNAME`
+
+* 6.4
 ---
 
  * Add early directory prunning to `Finder::filter()`

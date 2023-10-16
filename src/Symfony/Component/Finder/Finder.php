@@ -802,6 +802,9 @@ class Finder implements \IteratorAggregate, \Countable
         if ($this->followLinks) {
             $flags |= \RecursiveDirectoryIterator::FOLLOW_SYMLINKS;
         }
+        if ($this->currentAsPathname) {
+            $flags |= \RecursiveDirectoryIterator::CURRENT_AS_PATHNAME;
+        }
 
         $iterator = new Iterator\RecursiveDirectoryIterator($dir, $flags, $this->ignoreUnreadableDirs);
 
