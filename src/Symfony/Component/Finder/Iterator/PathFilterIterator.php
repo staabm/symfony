@@ -28,7 +28,12 @@ class PathFilterIterator extends MultiplePcreFilterIterator
      */
     public function accept(): bool
     {
-        $filename = $this->current()->getRelativePathname();
+        $current = $this->current();
+        if (!$current instanceof \SplFileInfo) {
+            throw new \RuntimeException('This filter only supports current as fileinfo.');
+        }
+
+        $filename = $current->getRelativePathname();
 
         if ('\\' === \DIRECTORY_SEPARATOR) {
             $filename = str_replace('\\', '/', $filename);

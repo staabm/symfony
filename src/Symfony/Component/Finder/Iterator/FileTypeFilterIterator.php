@@ -41,10 +41,12 @@ class FileTypeFilterIterator extends \FilterIterator
      */
     public function accept(): bool
     {
-        $fileinfo = $this->current();
-        if (self::ONLY_DIRECTORIES === (self::ONLY_DIRECTORIES & $this->mode) && $fileinfo->isFile()) {
+        $current = $this->current();
+        $path = is_string($current) ? $current : $current->getPathname();
+
+        if (self::ONLY_DIRECTORIES === (self::ONLY_DIRECTORIES & $this->mode) && is_file($path)) {
             return false;
-        } elseif (self::ONLY_FILES === (self::ONLY_FILES & $this->mode) && $fileinfo->isDir()) {
+        } elseif (self::ONLY_FILES === (self::ONLY_FILES & $this->mode) && is_dir($path)) {
             return false;
         }
 

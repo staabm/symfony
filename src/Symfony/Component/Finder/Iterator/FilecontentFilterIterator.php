@@ -33,6 +33,9 @@ class FilecontentFilterIterator extends MultiplePcreFilterIterator
         }
 
         $fileinfo = $this->current();
+        if (!$fileinfo instanceof \SplFileInfo) {
+            throw new \RuntimeException('This filter only supports current as fileinfo.');
+        }
 
         if ($fileinfo->isDir() || !$fileinfo->isReadable()) {
             return false;

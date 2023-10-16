@@ -41,6 +41,9 @@ class DateRangeFilterIterator extends \FilterIterator
     public function accept(): bool
     {
         $fileinfo = $this->current();
+        if (!$fileinfo instanceof \SplFileInfo) {
+            throw new \RuntimeException('This filter only supports current as fileinfo.');
+        }
 
         if (!file_exists($fileinfo->getPathname())) {
             return false;

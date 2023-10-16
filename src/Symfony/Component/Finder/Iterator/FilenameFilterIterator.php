@@ -18,7 +18,7 @@ use Symfony\Component\Finder\Glob;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
- * @extends MultiplePcreFilterIterator<string, \SplFileInfo>
+ * @extends MultiplePcreFilterIterator<string, \SplFileInfo|string>
  */
 class FilenameFilterIterator extends MultiplePcreFilterIterator
 {
@@ -27,7 +27,10 @@ class FilenameFilterIterator extends MultiplePcreFilterIterator
      */
     public function accept(): bool
     {
-        return $this->isAccepted($this->current()->getFilename());
+        $current = $this->current();
+        $path = is_string($current) ? basename($current) : $current->getFilename();
+
+        return $this->isAccepted($path);
     }
 
     /**

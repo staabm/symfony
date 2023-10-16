@@ -54,6 +54,7 @@ class Finder implements \IteratorAggregate, \Countable
     private array $depths = [];
     private array $sizes = [];
     private bool $followLinks = false;
+    private bool $currentAsPathname = false;
     private bool $reverseSorting = false;
     private \Closure|int|false $sort = false;
     private int $ignore = 0;
@@ -608,6 +609,18 @@ class Finder implements \IteratorAggregate, \Countable
     public function followLinks(): static
     {
         $this->followLinks = true;
+
+        return $this;
+    }
+
+    /**
+     * Return current as path name.
+     *
+     * @return $this
+     */
+    public function currentAsPathname(): static
+    {
+        $this->currentAsPathname = true;
 
         return $this;
     }

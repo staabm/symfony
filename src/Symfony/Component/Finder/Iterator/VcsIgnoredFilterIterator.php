@@ -49,9 +49,10 @@ final class VcsIgnoredFilterIterator extends \FilterIterator
 
     public function accept(): bool
     {
-        $file = $this->current();
+        $current = $this->current();
+        $path = is_string($current) ? realpath($current) : $current->getRealPath();
 
-        $fileRealPath = $this->normalizePath($file->getRealPath());
+        $fileRealPath = $this->normalizePath($path);
 
         return !$this->isIgnored($fileRealPath);
     }

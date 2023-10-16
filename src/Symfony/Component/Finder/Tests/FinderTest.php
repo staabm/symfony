@@ -1097,6 +1097,7 @@ class FinderTest extends Iterator\RealIteratorTestCase
             __DIR__.\DIRECTORY_SEPARATOR.'GitignoreTest.php',
             __DIR__.\DIRECTORY_SEPARATOR.'FinderOpenBasedirTest.php',
             __DIR__.\DIRECTORY_SEPARATOR.'FinderTest.php',
+            __DIR__.\DIRECTORY_SEPARATOR.'FinderAsPathnameTest.php',
             __DIR__.\DIRECTORY_SEPARATOR.'GlobTest.php',
             self::$tmpDir.\DIRECTORY_SEPARATOR.'qux_0_1.php',
             self::$tmpDir.\DIRECTORY_SEPARATOR.'qux_1000_1.php',

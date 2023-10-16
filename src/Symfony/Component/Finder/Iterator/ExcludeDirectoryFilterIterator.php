@@ -77,7 +77,12 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
         }
 
         if ($this->excludedPattern) {
-            $path = $this->isDir() ? $this->current()->getRelativePathname() : $this->current()->getRelativePath();
+            $current = $this->current();
+            if (!$current instanceof \SplFileInfo) {
+                throw new \RuntimeException('This filter only supports current as fileinfo.');
+            }
+
+            $path = $this->isDir() ? $current->getRelativePathname() : $current->getRelativePath();
             $path = str_replace('\\', '/', $path);
 
             return !preg_match($this->excludedPattern, $path);

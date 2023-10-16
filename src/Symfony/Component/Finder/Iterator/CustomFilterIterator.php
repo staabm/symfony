@@ -49,6 +49,9 @@ class CustomFilterIterator extends \FilterIterator
     public function accept(): bool
     {
         $fileinfo = $this->current();
+        if (!$fileinfo instanceof \SplFileInfo) {
+            throw new \RuntimeException('This filter only supports current as fileinfo.');
+        }
 
         foreach ($this->filters as $filter) {
             if (false === $filter($fileinfo)) {
